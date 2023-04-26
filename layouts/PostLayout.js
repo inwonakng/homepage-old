@@ -8,21 +8,21 @@ import siteMetadata from '@/data/siteMetadata'
 import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
-const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `${siteMetadata.siteUrl}/blog/${slug}`
-  )}`
+// const editUrl = (fileName) => `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
+// const discussUrl = (slug) =>
+//   `https://mobile.twitter.com/search?q=${encodeURIComponent(
+//     `${siteMetadata.siteUrl}/blog/${slug}`
+//   )}`
 
 const postDateTemplate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
 
-export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
+export default function PostLayout({ frontMatter, postType, authorDetails, next, prev, children }) {
   const { slug, fileName, date, title, images, tags } = frontMatter
 
   return (
     <SectionContainer>
       <BlogSEO
-        url={`${siteMetadata.siteUrl}/blog/${slug}`}
+        url={`${siteMetadata.siteUrl}/${postType}/${slug}`}
         authorDetails={authorDetails}
         {...frontMatter}
       />
@@ -87,14 +87,14 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             </dl>
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               <div className="prose max-w-none pb-8 pt-10 dark:prose-dark">{children}</div>
-              <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+              {/* <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
                 <Link href={discussUrl(slug)} rel="nofollow">
                   {'Discuss on Twitter'}
                 </Link>
                 {` • `}
                 <Link href={editUrl(fileName)}>{'View on GitHub'}</Link>
               </div>
-              <Comments frontMatter={frontMatter} />
+              <Comments frontMatter={frontMatter} /> */}
             </div>
             <footer>
               <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
@@ -105,7 +105,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                     </h2>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
+                        <Tag key={tag} postType={postType} text={tag} />
                       ))}
                     </div>
                   </div>
@@ -118,7 +118,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                           Previous Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                          <Link href={`/${postType}/${prev.slug}`}>{prev.title}</Link>
                         </div>
                       </div>
                     )}
@@ -128,7 +128,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                           Next Article
                         </h2>
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                          <Link href={`/${postType}/${next.slug}`}>{next.title}</Link>
                         </div>
                       </div>
                     )}
@@ -137,10 +137,10 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               </div>
               <div className="pt-4 xl:pt-8">
                 <Link
-                  href="/blog"
+                  href={`/${postType}`}
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                 >
-                  &larr; Back to the blog
+                  &larr; {`Back to ${postType}`}
                 </Link>
               </div>
             </footer>

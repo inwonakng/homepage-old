@@ -1,16 +1,16 @@
 ---
-name: Tails Azimuth
-avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+name: Inwon Kang
+avatar: /static/images/hawaii.jpeg
+occupation: PhD Student
+company: Rensselaer Polytechnic Institute
+email: inwon.kang04@gmail.com
+# twitter: https://twitter.com/Twitter
+linkedin: https://www.linkedin.com/in/inwon-kang
+github: https://github.com/inwonakng
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+I am a current Ph.D student at Rensselaer Polytechnic Institute, working under Professor Oshani Seneviratne. I work mostly with Python for data/analysis oriented projects. I am also familiar with javascript-based frameworks.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+During my undergraduate and master's program, I focused on explaininable machine learning using shallow models. My master's project was on collecting survey data from participants and building explainable ML models to try to explain the results. During this time, I also dabbled in NLP and built an enhanced pipeline of existing state-of-art model for Preference Ellicitation task using GNNs and coreference parsers.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+My PhD focus is on blockchain systems and integration of machine learning with blockchains.

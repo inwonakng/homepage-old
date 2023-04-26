@@ -6,33 +6,59 @@ import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
 
 export async function getStaticProps() {
-  const tags = await getAllTags('blog')
-
-  return { props: { tags } }
+  const blogTags = await getAllTags('blog')
+  const publicationTags = await getAllTags('publications')
+  return { props: { blogTags, publicationTags } }
 }
 
-export default function Tags({ tags }) {
-  const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
+export default function Tags({ blogTags, publicationTags }) {
+  const sortedBlogTags = Object.keys(blogTags).sort((a, b) => blogTags[b] - blogTags[a])
+  const sortedPublicationTags = Object.keys(publicationTags).sort(
+    (a, b) => publicationTags[b] - publicationTags[a]
+  )
   return (
     <>
-      <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I blog about" />
+      <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I publish/blog about" />
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
         <div className="space-x-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:border-r-2 md:px-6 md:text-6xl md:leading-14">
-            Tags
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:border-r-2 md:px-6 md:text-4xl md:leading-14">
+            Publication Tags
           </h1>
         </div>
         <div className="flex max-w-lg flex-wrap">
-          {Object.keys(tags).length === 0 && 'No tags found.'}
-          {sortedTags.map((t) => {
+          {Object.keys(publicationTags).length === 0 && 'No tags found.'}
+          {sortedPublicationTags.map((t) => {
             return (
               <div key={t} className="mb-2 mr-5 mt-2">
-                <Tag text={t} />
+                <Tag postType="publications" text={t} />
                 <Link
-                  href={`/tags/${kebabCase(t)}`}
+                  href={`/tags/publications/${kebabCase(t)}`}
                   className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
                 >
-                  {` (${tags[t]})`}
+                  {` (${publicationTags[t]})`}
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
+        <div className="space-x-2 pb-8 pt-6 md:space-y-5">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:border-r-2 md:px-6 md:text-4xl md:leading-14">
+            Blog Tags
+          </h1>
+        </div>
+        <div className="flex max-w-lg flex-wrap">
+          {Object.keys(blogTags).length === 0 && 'No tags found.'}
+          {sortedBlogTags.map((t) => {
+            return (
+              <div key={t} className="mb-2 mr-5 mt-2">
+                <Tag postType="blog" text={t} />
+                <Link
+                  href={`/tags/blog/${kebabCase(t)}`}
+                  className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
+                >
+                  {` (${blogTags[t]})`}
                 </Link>
               </div>
             )

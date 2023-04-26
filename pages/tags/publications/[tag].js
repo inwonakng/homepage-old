@@ -11,43 +11,27 @@ import path from 'path'
 const root = process.cwd()
 
 export async function getStaticPaths() {
-  const publicationTags = await getAllTags('publications')
-  const publicationPaths = Object.keys(publicationTags).map((tag) => ({
-    params: {
-      tag,
-      postType: 'publications',
-    },
-  }))
-  const blogTags = await getAllTags('blog')
-  const blogPaths = Object.keys(blogTags).map((tag) => ({
-    params: {
-      tag,
-      postType: 'blog',
-    },
-  }))
-
-  console.log('getstaticpaths')
-  console.log(blogPaths)
-
+  const tags = await getAllTags('publications')
   return {
-    paths: [...publicationPaths, ...blogPaths],
+    paths: Object.keys(tags).map((tag) => ({
+      params: {
+        tag,
+      },
+    })),
     fallback: false,
   }
 }
 
 export async function getStaticProps({ params }) {
-  console.log('static props function!')
-  console.log(params)
   const allPosts = await getAllFilesFrontMatter('publications')
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
-  // console.log(allPosts)
 
   // rss
   if (filteredPosts.length > 0) {
-    const rss = generateRss(filteredPosts, `tags/${params.tag}/feed.xml`)
-    const rssPath = path.join(root, 'public', 'tags', params.tag)
+    const rss = generateRss(filteredPosts, `tags/publications/${params.tag}/feed.xml`)
+    const rssPath = path.join(root, 'public', 'tags', 'publications', params.tag)
     fs.mkdirSync(rssPath, { recursive: true })
     fs.writeFileSync(path.join(rssPath, 'feed.xml'), rss)
   }
@@ -65,7 +49,7 @@ export default function Tag({ posts, tag }) {
         title={`${tag} - ${siteMetadata.author}`}
         description={`${tag} tags - ${siteMetadata.author}`}
       />
-      <ListLayout postType="blog" posts={posts} title={title} />
+      <ListLayout postType="publications" posts={posts} title={title} />
     </>
   )
 }
