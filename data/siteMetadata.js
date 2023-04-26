@@ -1,14 +1,14 @@
 const siteMetadata = {
-  title: "Inwon's Blog",
+  title: 'Inwon Kang',
   author: 'Inwon Kang',
-  headerTitle: "Inwon's Blog",
-  description: "Inwon's Blog",
+  headerTitle: 'Inwon Kang',
+  description: "Inwon's Homepage",
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://inwon.net',
   siteRepo: 'https://github.com/inwonakng/homepage',
   siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  image: '/static/images/hawaii.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'inwon.kang04@gmail.com',
   github: 'https://github.com/inwonakng',
