@@ -3,14 +3,14 @@ import siteMetadata from '@/data/siteMetadata'
 import ListLayout from '@/layouts/ListLayout'
 import { PageSEO } from '@/components/SEO'
 
-export const PUBLICATIONS_PER_PAGE = 20
+export const POSTS_PER_PAGE = 20
 
 export async function getStaticProps() {
   const publications = await getAllFilesFrontMatter('publications')
-  const initialDisplayPublications = publications.slice(0, PUBLICATIONS_PER_PAGE)
+  const initialDisplayPublications = publications.slice(0, POSTS_PER_PAGE)
   const pagination = {
     currentPage: 1,
-    totalPages: Math.ceil(publications.length / PUBLICATIONS_PER_PAGE),
+    totalPages: Math.ceil(publications.length / POSTS_PER_PAGE),
   }
 
   return { props: { initialDisplayPublications, publications, pagination } }

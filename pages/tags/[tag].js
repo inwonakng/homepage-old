@@ -26,9 +26,6 @@ export async function getStaticPaths() {
     },
   }))
 
-  console.log('getstaticpaths')
-  console.log(blogPaths)
-
   return {
     paths: [...publicationPaths, ...blogPaths],
     fallback: false,
@@ -36,13 +33,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  console.log('static props function!')
-  console.log(params)
   const allPosts = await getAllFilesFrontMatter('publications')
   const filteredPosts = allPosts.filter(
     (post) => post.draft !== true && post.tags.map((t) => kebabCase(t)).includes(params.tag)
   )
-  // console.log(allPosts)
 
   // rss
   if (filteredPosts.length > 0) {
@@ -56,7 +50,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Tag({ posts, tag }) {
-  // console.log('tag function!')
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1)
   return (
