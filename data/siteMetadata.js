@@ -9,7 +9,7 @@ const siteMetadata = {
   siteRepo: 'https://github.com/inwonakng/homepage',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
-  socialBanner: '/static/images/twitter-card.png',
+  // socialBanner: '/static/images/twitter-card.png',
   email: 'inwon.kang04@gmail.com',
   github: 'https://github.com/inwonakng',
   // twitter: 'https://twitter.com/Twitter',

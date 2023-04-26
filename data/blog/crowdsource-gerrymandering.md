@@ -1,9 +1,9 @@
 ---
 title: Crowdsourcing Perceptions of Gerrymandering
-date: '2022-04-25'
-tags: []
+date: '2022-04-09'
+tags: ['react', 'google sheets api', 'sklearn', 'crowdsourcing']
 draft: false
-summary: Finally made a real website!
+summary: Built a website to conduct a survey on people's perception of Gerrymandering
 images: []
 ---
 

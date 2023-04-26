@@ -73,7 +73,7 @@ export default function ListLayout({
                           href={`/${postType}/${slug}`}
                           className="text-gray-900 dark:text-gray-100"
                         >
-                          {title} {postType}
+                          {title}
                         </Link>
                       </h3>
                       <div className="flex flex-wrap">

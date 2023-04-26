@@ -1,6 +1,6 @@
 ---
 title: Crowdsourcing on Algorand (Algorand Mega Ace Hackathon)
-date: '2023-01-04'
+date: '2023-04-16'
 tags: ['algorand', 'teal', 'beaker', 'react']
 draft: false
 summary: Chrome extension to interact with Ethereum smart contracts

@@ -1,9 +1,9 @@
 ---
 title: Critical Infrastructures of Northeastern US
-date: '2023-04-25'
+date: '2022-04-23'
 tags: ['react', 'redux', 'leaflet']
 draft: false
-summary: Finally made a real website!
+summary: Built a map viewer website to display potential risks to critical infrastructures of Northeastern US
 images: []
 ---
 
