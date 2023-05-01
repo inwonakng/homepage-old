@@ -1,0 +1,7 @@
+/* giscuss full width */
+/* https://github.com/giscus/giscus/issues/76 */
+
+.giscus,
+.giscus-frame {
+  width: 100%;
+}
