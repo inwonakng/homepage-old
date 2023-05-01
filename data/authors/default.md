@@ -14,3 +14,5 @@ I am a current Ph.D student at Rensselaer Polytechnic Institute, working under P
 During my undergraduate and master's program, I focused on explainable machine learning using shallow models. My master's project was on collecting survey data from participants and building explainable ML models to try to explain the results. During this time, I also dabbled in NLP and built an enhanced pipeline of existing state-of-art model for Preference Ellicitation task using GNNs and coreference parsers.
 
 My PhD focus is on blockchain systems and integration of machine learning with blockchains.
+
+[CV](https://github.com/inwonakng/homepage/raw/master/public/static/pdf/resume.pdf)
