@@ -1,7 +1,7 @@
 ---
 title: Building a REST API for Alpaca
 date: '2023-5-01'
-tags: ['Natural Language Processing', 'Large Language Model', 'API', 'LLAMA', 'ALPACA']
+tags: ['Natural Language Processing', 'Large Language Model', 'API', 'LLAMA', 'ALPACA', 'Pytorch']
 draft: false
 summary: Building a simple API using FastAPI to interact with Stanford NLP's Alpaca model
 ---

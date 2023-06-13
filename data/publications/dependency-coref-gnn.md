@@ -4,10 +4,11 @@ date: '2023-02-13'
 tags:
   [
     'Natural Language Processing',
-    'Graph Neural Networks',
+    'Graph Neural Network',
     'Dependency Parsing',
     'Coreference Resolution',
     'Preference Ellicitation',
+    'Deep Learning',
   ]
 draft: false
 summary: Farhad Mohsin, Inwon Kang, Yuxuan Chen, Jingbo Shang and Lirong Xia. (DLG-AAAI’23)
