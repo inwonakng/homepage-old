@@ -19,7 +19,7 @@ images:
 
 # Why use it?
 
-In my case, the reason that drove me to pick up this framework was the fact that I don't have to do any manual device management. Before learning lightning, I used to create a file called `device.py` and to a top-level import for the deviced used in the experiments. This means that every file that contains code dealing with backpropgation needed to import this file and call `.to(device)` in order to prevent cuda from complaining. This worked well enough for simple cases, but can start to get pretty annoying once you start having to manage more complex tensor operations.
+The reason that drove me to pick up this framework was the fact that I don't have to do any manual device management. Before learning lightning, I used to create a file called `device.py` and to a top-level import for the deviced used in the experiments. This means that every file that contains code dealing with backpropgation needed to import this file and call `.to(device)` in order to prevent cuda from complaining. This worked well enough for simple cases, but can start to get pretty annoying once you start having to manage more complex tensor operations.
 
 Other than that, it also provides a pretty clean way of managing your code. One of the problems that I face every time I start a new project is how to structure. The best practice in the vanilla setting is to write a train and evaluate function that takes in the model and dataloaders, but this can result in unorganized code that is difficult to maintain. Lightning can take care of this problem by providing a boilerplate that can be followed, leaving much less room for possibly redundant deviations.
 
@@ -91,7 +91,7 @@ This will create the directory specified in `SummaryWriter`'s constructor and po
 
 ![tensorboard-main-page](/static/images/torch-lightning-hyperparameter-tuning/tensorboard.png)
 
-This is useful enough when you just want to look at your loss curve or check various metric scores. However, tensorboard can do much more! On the top bar of the dashboard, there is a tab called 'HPARAMS'. This is where you can compare the results of models with varying hyperparameters, allowing you to pick the best model.
+This is useful enough when you just want to look at your loss curve or check various metric scores. However, tensorboard can do much more. On the top bar of the dashboard, there is a tab called 'HPARAMS'. This is where you can compare the results of models with varying hyperparameters, allowing you to pick the best model.
 
 Here are some screenshots of the cool things you can find on that page:
 
@@ -160,4 +160,4 @@ I omited the unrelated parts to higlight just how simple it is. All you need to 
 2. Initialize the hyperparameter metrics as zero and specify which fields to follow.
 3. When initializing the tensorboard logger, set `default_hp_metric` to `False`.
 
-It's actually pretty well documented in the [official docs](https://lightning.ai/docs/pytorch/latest/extensions/logging.html#logging-hyperparameters). But by just following their instructions, I wasn't able to get the metrics to show up properly on the hparams dashboard. After a few hours of search, it seemed that turning off the `default_hp_metric` was the final piece -- at least in my case of custom hparam metrics. This took me some digging online to find, and I'm hoping that this will help you if you come across this post. I have also seen [posts online](https://github.com/Lightning-AI/lightning/issues/1225#issuecomment-605644904) noting that if some previous runs in the log directory did not have hparams, tensorboard struggles with finding the metrics, which might be helpful as well.
+It's actually pretty well documented in the [official docs](https://lightning.ai/docs/pytorch/latest/extensions/logging.html#logging-hyperparameters). But by just following their instructions, I wasn't able to get the metrics to show up properly on the hparams dashboard. After a few hours of search, it seemed that turning off the `default_hp_metric` was the final piece -- at least in my case of custom hparam metrics. This took me some digging online to find, and I'm hoping that this will help you if you come across this post. I have also seen [posts online](https://github.com/Lightning-AI/lightning/issues/1225#issuecomment-605644904) noting that if some previous runs in the log directory did not have `hpmetric`, tensorboard struggles with finding the metrics, which might be helpful as well.
