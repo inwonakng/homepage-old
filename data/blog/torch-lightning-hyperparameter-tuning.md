@@ -1,7 +1,7 @@
 ---
 title: Hyperparameter tuning with Pytorch Lightning and Tensorboard
 date: '2023-6-15'
-tags: ['Deep Learing', 'Pytorch', 'Graph Neural Network']
+tags: ['Deep Learing', 'Pytorch']
 draft: false
 summary: Quick tutorial on how to use tensorboard to do initial hyperparameter tuning with pytorch lightning.
 images:
