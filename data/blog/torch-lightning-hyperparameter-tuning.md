@@ -1,6 +1,6 @@
 ---
 title: Hyperparameter tuning with Pytorch Lightning and Tensorboard
-date: '2023-6-15'
+date: '2023-6-13'
 tags: ['Deep Learing', 'Pytorch']
 draft: false
 summary: Quick tutorial on how to use tensorboard to do initial hyperparameter tuning with pytorch lightning.
@@ -96,7 +96,9 @@ This is useful enough when you just want to look at your loss curve or check var
 Here are some screenshots of the cool things you can find on that page:
 
 ![](/static/images/torch-lightning-hyperparameter-tuning/hparams.png)
+
 ![](/static/images/torch-lightning-hyperparameter-tuning/scatter.png)
+
 ![](/static/images/torch-lightning-hyperparameter-tuning/coordinates.png)
 
 These plots are showing the performance of different hyperparameters with respect to the metric beind used to evaluate them (in my case, validation loss). Here is how you can achieve this in a few simple steps using the Lightning framework.
