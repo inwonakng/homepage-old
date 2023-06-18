@@ -46,7 +46,7 @@ Since Iterm is a terminal manager, you can also create 'tabs'. You can do this b
 
 ### Splitting panes
 
-To split a pane horizontally, press `cmd+d`. To split vertically, use `cmd+shift+d`. You can close a pane by pressing `cmd+w`, just like how you would close your tab in a web browser. Iterm also accepts `ctrl+d` key to close a pane. If there is only one pane, this closes the entire terminal, so be careful. To navigate between the panes in a window, you can use `cmd+option+arrow`. Unlike tmux, you'll notice that you do not have to press the keys sequentially. You can also cycle between different tabs by pressing `cmd+arrow`.
+To split a pane horizontally, press `cmd+d`. To split vertically, use `cmd+shift+d`. You can close a pane by pressing `cmd+w`, just like how you would close your tab in a web browser. Iterm also accepts `ctrl+d` key to close a pane. If there is only one pane, this closes the entire terminal, so be careful. To navigate between the panes in a window, you can use `cmd+option+arrow`. Unlike tmux, you'll notice that you do not have to press the keys sequentially. You can also cycle between different tabs by pressing `cmd+arrow`. To zoom in/out of a pane, you can press `cmd+shift+enter`.
 
 ### Setting up floating window
 
