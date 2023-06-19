@@ -180,7 +180,7 @@ Not much! The examples for Ray Tune might be a bit daunting, but that's because 
 
 One thing I found confusing when I got started with Ray Tune was that there were two versions of the tutorials. [This one](https://docs.ray.io/en/latest/tune/examples/tune-pytorch-lightning.html) makes use of `LightningConfigBuilder` and `LightningTrainer` from `ray.train.lightning`, while [this one](https://docs.ray.io/en/latest/tune/examples/tune-vanilla-pytorch-lightning.html) makes use of `TuneReportCallback` and `TuneReportCheckpointCallback` from `ray.tune.integration.pytorch_lightning`. As the url suggests, the second one is the older way of doing things, and the first link is the latest way to do things.
 
-While the new way is nice, I did have a very minor complaint: the names of the parameters reported on the logs become enormous. For example, if the parameter would have been displayed as `in_dim` in the older method, now it will look something like `lightning_config/_module_init_config/.../in_dim`. It's really not a big deal, but it does make the output kind of difficult to read.
+While the new way is nice, I did have a very minor complaint: the names of the parameters reported on the logs become enormous. For example, if the parameter would have been displayed as `in_dim` in the older method, now it will look something like `lightning_config/_module_init_config/in_dim`. It's really not a big deal, but it does make the output kind of difficult to read.
 
 Anyways, below is a quick example of how I was able to get my LightningModule class to work with Ray Tune.
 
@@ -277,7 +277,7 @@ Few things to note:
 
 I made the code simple, but this really is most of what you need to do to make Ray Tune work with your pytorch-lightning model. Ray Tune stores its logs under `~/ray_results`. If you run a tensorboard on this directory (i.e. `tensorboard --log_dir ~/ray_results`), you can look at the same hyperparameter page we saw earlier. Except this time, it is done algorithmically and you do not need to do anything related to hyperparameters on the torch lightining side (i.e. no need for save_hyperparameters anymore).
 
-To load the best model, you need to first restore the tuner by giving it the path to the experiment (it would be `~/ray_results/tune_asha` if you followed the above example) and the type of trainer. Then you can get the best results from it, which you can pass to the `load_from_checkpoint` funciton of `pl.LightningModule`. I think there must be a nicer way to do this in a Ray-native way, but I wasn't able to find it and this was what I got working. If there is a better way to do it without me digging into the result config, please leave it in the comments!
+To load the best model, you need to first restore the tuner by giving it the path to the experiment (it would be `~/ray_results/tune_asha` if you followed the above example) and the type of trainer. Then you can get the best results from it, which you can pass to the `load_from_checkpoint` function of `pl.LightningModule`. I think there must be a nicer way to do this in a Ray-native way, but I wasn't able to find it and this was what I got working. If there is a better way to do it without me digging into the result config, please leave it in the comments!
 
 ```python
 
