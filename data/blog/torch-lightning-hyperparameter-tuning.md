@@ -183,6 +183,7 @@ One thing I found confusing when I got started with Ray Tune was that there were
 While the new way is nice, I did have a very minor complaint: the names of the parameters reported on the logs become enormous. For example, if the parameter would have been displayed as `in_dim` in the older method, now it will look something like `lightning_config/_module_init_config/in_dim`. It's really not a big deal, but it does make the output kind of difficult to read.
 
 Anyways, below is a quick example of how I was able to get my LightningModule class to work with Ray Tune.
+In this example, I am using the HyperOptSearch algorithm with the Asha scheduler.
 
 ```python
 from ray import air, tune
@@ -265,19 +266,36 @@ print(best_result)
 
 Few things to note:
 
-- In the example shown in the official site, they use a dictionary called `config` to pass the parameters into your model as one object. I thought this was necessary and made some modifications to my code, but I really disliked this pattern as it produces unintuitive code. However, I found out that you <u>do not</u> need to follow this pattern. As I show in the example above, you can simple pass the different arguments to your constructor as keyword arguments. This way, if you have some default variables that do not need to be tested, you simply pass them in as is, and only pass the necessary variables as `tune.choice` or other [search space API](https://docs.ray.io/en/latest/tune/api/search_space.html).
+- In the example shown in the official site, they use a dictionary called `config` to pass the parameters into your model as one object.
+  I thought this was necessary and made some modifications to my code, but I really disliked this pattern as it produces unintuitive code.
+  However, I found out that you <u>do not</u> need to follow this pattern.
+  As I show in the example above, you can simple pass the different arguments to your constructor as keyword arguments.
+  This way, if you have some default variables that do not need to be tested, you simply pass them in as is, and only pass the necessary variables as `tune.choice` or other [search space API](https://docs.ray.io/en/latest/tune/api/search_space.html).
+
+- Notice that unlike the official tutorial, I am not using a logger for the lightning trainer.
+  This is because Ray Tune is already logging the important stuff to its own directory, so there is no need to do this again.
 
 - The metric used for checkpointing and tuning (`my_target_metric` in this case) must be logged in the module you are using.
 
-- In this example, I am using the HyperOptSearch algorithm with the Asha scheduler.
+- You might get a strange error claiming that your lightning module is not a subclass of `pl.LightningModule`.
+  In my case, this was because the version of Ray I was using used `pytorch_lightning` instead of `lightning.pytorch`.
+  If you see this error, check the source files for Ray to find out which lightning package it is using.
 
-- Notice that unlike the official tutorial, I am not using a logger for the lightning trainer. This is because Ray Tune is already logging the important stuff to its own directory, so there is no need to do this again.
+- In `scaling_config`, the `num_worker` corresponds to the number of workers **per trial**.
+  Ray will always try to use all available resources, and will assign that number of workers per trial.
+  In my experience, setting this value to a high number didn't necessarily lead to speedup -- in fact, unless your trials are very heavy, setting it to 1 will suffice.
 
-- You might get a strange error claiming that your lightning module is not a subclass of `pl.LightningModule`. In my case, this was because the version of Ray I was using used `pytorch_lightning` instead of `lightning.pytorch`. If you see this error, check the source files for Ray to find out which lightning package it is using.
+- If you are using `LightningTrainer`, make sure that you implement the `DataModule` class in a way suggested by the official [pytorch lightning docs](https://lightning.ai/docs/pytorch/stable/data/datamodule.html) such that the `DataModule` object is not 'materialized' until `.setup` is called. If you don't do this, the ray logs will become enormous as it records every parameter to `trainer`.
 
-I made the code simple, but this really is most of what you need to do to make Ray Tune work with your pytorch-lightning model. Ray Tune stores its logs under `~/ray_results`. If you run a tensorboard on this directory (i.e. `tensorboard --log_dir ~/ray_results`), you can look at the same hyperparameter page we saw earlier. Except this time, it is done algorithmically and you do not need to do anything related to hyperparameters on the torch lightining side (i.e. no need for save_hyperparameters anymore).
+I made the code simple, but this really is most of what you need to do to make Ray Tune work with your pytorch-lightning model.
+Ray Tune stores its logs under `~/ray_results`.
+If you run a tensorboard on this directory (i.e. `tensorboard --log_dir ~/ray_results`), you can look at the same hyperparameter page we saw earlier.
+Except this time, it is done algorithmically and you do not need to do anything related to hyperparameters on the torch lightining side (i.e. no need for save_hyperparameters anymore).
 
-To load the best model, you need to first restore the tuner by giving it the path to the experiment (it would be `~/ray_results/tune_asha` if you followed the above example) and the type of trainer. Then you can get the best results from it, which you can pass to the `load_from_checkpoint` function of `pl.LightningModule`. I think there must be a nicer way to do this in a Ray-native way, but I wasn't able to find it and this was what I got working. If there is a better way to do it without me digging into the result config, please leave it in the comments!
+To load the best model, you need to first restore the tuner by giving it the path to the experiment (it would be `~/ray_results/tune_asha` if you followed the above example) and the type of trainer.
+Then you can get the best results from it, which you can pass to the `load_from_checkpoint` function of `pl.LightningModule`.
+I think there must be a nicer way to do this in a Ray-native way, but I wasn't able to find it and this was what I got working.
+If there is a better way to do it without me digging into the result config, please leave it in the comments!
 
 ```python
 
