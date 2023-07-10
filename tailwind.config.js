@@ -28,9 +28,8 @@ module.exports = {
         sans: [
           'IBM Plex Mono, monospace',
           // 'Helvetica',
-          // IBM Plex Mono,monospace
           // 'InterVariable',
-          // ...defaultTheme.fontFamily.sans
+          ...defaultTheme.fontFamily.sans,
         ],
       },
       colors: {
@@ -51,7 +50,7 @@ module.exports = {
             h1: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.900'),
+              color: theme('colors.red.500'),
             },
             h2: {
               fontWeight: '700',

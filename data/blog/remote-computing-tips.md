@@ -41,7 +41,7 @@ ssh -L {LOCAL_PORT_YOU_WANT}:{ACTUAL_REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD} {S
 
 Or, if you are always using the same port and don't want to bother typing out the whole thing every time, you can modify your local machine's ssh setting to always forward a particular port by modifying the `~/.ssh/config` file.
 
-```
+```ssh-config:~/.ssh/config
 Host {SOME_UNIQUE_NAME}
     HostName {ACTUAL_REMOTE_ADDRESS}
     LocalForward 127.0.0.1:{LOCAL_PORT_YOU_WANT} {ACTUAL_REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD}
@@ -53,7 +53,7 @@ Notice that you can give some nickname to the remote server instead of typing ou
 If your remote machine is behind a login node, the process is similar.
 In this case, you first need to connect to your login node and then connect to the actual computing machine behind it, so you need to make two connections.
 
-```bash
+```ssh-config:~/.ssh/config
 Host {LOGIN_NODE_NAME}
     HostName {LOGIN_NODE_ADDRESS}
     User {YOUR_USERNAME}

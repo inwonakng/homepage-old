@@ -23,7 +23,7 @@ export default function ListLayout({
 
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="divide-y divide-gray-300 dark:divide-gray-500">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h2 className="text-2xl font-extrabold leading-9 tracking-tight">{title}</h2>
           <div className="relative max-w-lg">
@@ -66,12 +66,7 @@ export default function ListLayout({
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link
-                          href={`/${postType}/${slug}`}
-                          className="text-gray-900 dark:text-gray-300"
-                        >
-                          {title}
-                        </Link>
+                        <Link href={`/${postType}/${slug}`}>{title}</Link>
                       </h3>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (

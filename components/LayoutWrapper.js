@@ -20,11 +20,11 @@ const LayoutWrapper = ({ children }) => {
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
         <header>
-          <div className="flex items-center justify-between pb-4 pt-8 sm:pb-8">
+          <div className="flex items-center justify-between pb-8 pt-8">
             <Link href="/" aria-label={siteMetadata.headerTitle}>
-              <h2 className="text-2xl font-extrabold">{siteMetadata.headerTitle}</h2>
+              <h1 className="text-2xl font-extrabold">{siteMetadata.headerTitle}</h1>
             </Link>
-            <nav className="flex hidden items-center text-base leading-5 sm:block">
+            <nav className="flex hidden items-center text-base sm:block">
               {headerNavLinks.map((link) => (
                 <Link key={link.title} href={link.href} className="p-1 font-medium sm:ml-4">
                   {link.title}
@@ -40,12 +40,7 @@ const LayoutWrapper = ({ children }) => {
               aria-label="Toggle Menu"
               onClick={onToggleNav}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="text-gray-900 dark:text-gray-300"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path
                   fillRule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -59,11 +54,7 @@ const LayoutWrapper = ({ children }) => {
               <hr />
               {headerNavLinks.map((link) => (
                 <div key={link.title} className="px-2 py-2">
-                  <Link
-                    href={link.href}
-                    // className="text-1xl"
-                    onClick={onToggleNav}
-                  >
+                  <Link href={link.href} onClick={onToggleNav}>
                     {link.title}
                   </Link>
                 </div>
