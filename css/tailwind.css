@@ -23,3 +23,15 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
+
+body {
+  /* speak: none; */
+  /* font-style: normal; */
+  /* font-weight: normal; */
+  /* font-variant: normal; */
+  /* text-transform: none; */
+  /* line-height: 1; */
+  /* text-rendering: optimizeLegibility; */
+  /* -webkit-font-smoothing: antialiased; */
+  /* font-family: 'IBM Plex Mono,monospace'; */
+}

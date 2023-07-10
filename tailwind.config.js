@@ -26,7 +26,8 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          'IBM Plex Mono, monospace',
+          '"IBM Plex Mono"',
+          'monospace',
           // 'Helvetica',
           // 'InterVariable',
           ...defaultTheme.fontFamily.sans,
@@ -49,12 +50,12 @@ module.exports = {
             },
             h1: {
               fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
+              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.sky.950'),
             },
             h2: {
               fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
+              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.sky.950'),
             },
             h3: {
@@ -117,12 +118,12 @@ module.exports = {
             },
             h1: {
               fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
+              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.gray.300'),
             },
             h2: {
               fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
+              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.gray.300'),
             },
             h3: {

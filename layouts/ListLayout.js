@@ -25,7 +25,7 @@ export default function ListLayout({
     <>
       <div className="divide-y divide-gray-300 dark:divide-gray-500">
         <div className="pb-4">
-          <h2 className="pb-4 text-2xl font-extrabold leading-9 tracking-tight">{title}</h2>
+          <h2 className="pb-4 text-2xl font-extrabold">{title}</h2>
           <div className="relative max-w-lg">
             <input
               aria-label="Search articles"
@@ -65,7 +65,7 @@ export default function ListLayout({
                   </dl>
                   <div className="space-y-3 xl:col-span-3">
                     <div>
-                      <h3 className="text-2xl font-bold leading-8 tracking-tight">
+                      <h3 className="text-2xl font-bold">
                         <Link
                           href={`/${postType}/${slug}`}
                           className="underline-offset-2 hover:underline"
