@@ -1,7 +1,7 @@
 ---
 title: Using Iterm2 and Tmux for remote development
 date: '2023-6-15'
-tags: ['ssh', 'iterm2', 'tmux']
+tags: ['ssh', 'iterm2', 'tmux', 'remote-computing']
 draft: false
 summary: How to integrate Iterm2 with tmux on a remote ssh access
 images: [

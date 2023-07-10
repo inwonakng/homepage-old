@@ -15,4 +15,4 @@ During my undergraduate and master's program, I focused on explainable machine l
 
 My PhD focus is on blockchain systems and integration of machine learning with blockchains.
 
-[CV](https://github.com/inwonakng/homepage/raw/master/public/static/pdf/resume.pdf)
+[**CV**](https://github.com/inwonakng/homepage/raw/master/public/static/pdf/resume.pdf)

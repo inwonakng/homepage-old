@@ -25,7 +25,13 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+        sans: [
+          'IBM Plex Mono, monospace',
+          // 'Helvetica',
+          // IBM Plex Mono,monospace
+          // 'InterVariable',
+          // ...defaultTheme.fontFamily.sans
+        ],
       },
       colors: {
         primary: colors.teal,
@@ -113,19 +119,19 @@ module.exports = {
             h1: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.100'),
+              color: theme('colors.gray.300'),
             },
             h2: {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
-              color: theme('colors.gray.100'),
+              color: theme('colors.gray.300'),
             },
             h3: {
               fontWeight: '600',
-              color: theme('colors.gray.100'),
+              color: theme('colors.gray.300'),
             },
             'h4,h5,h6': {
-              color: theme('colors.gray.100'),
+              color: theme('colors.gray.300'),
             },
             pre: {
               backgroundColor: theme('colors.gray.800'),
@@ -144,10 +150,10 @@ module.exports = {
             'ul li::marker': {
               backgroundColor: theme('colors.gray.400'),
             },
-            strong: { color: theme('colors.gray.100') },
+            strong: { color: theme('colors.gray.300') },
             thead: {
               th: {
-                color: theme('colors.gray.100'),
+                color: theme('colors.gray.300'),
               },
             },
             tbody: {
@@ -156,9 +162,12 @@ module.exports = {
               },
             },
             blockquote: {
-              color: theme('colors.gray.100'),
+              color: theme('colors.gray.300'),
               borderLeftColor: theme('colors.gray.700'),
             },
+            // input: {
+            //   backgroundColor: theme('!colors.gray.900'),
+            // }
           },
         },
       }),

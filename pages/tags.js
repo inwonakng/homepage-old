@@ -21,9 +21,7 @@ export default function Tags({ blogTags, publicationTags }) {
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I publish/blog about" />
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
         <div className="space-x-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:border-r-2 md:px-6 md:text-4xl md:leading-14">
-            Publication Tags
-          </h1>
+          <h2 className="text-2xl font-extrabold">Publication Tags</h2>
         </div>
         <div className="flex max-w-lg flex-wrap">
           {Object.keys(publicationTags).length === 0 && 'No tags found.'}
@@ -44,9 +42,7 @@ export default function Tags({ blogTags, publicationTags }) {
       </div>
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
         <div className="space-x-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-10 md:border-r-2 md:px-6 md:text-4xl md:leading-14">
-            Blog Tags
-          </h1>
+          <h2 className="text-2xl font-extrabold">Blog Tags</h2>
         </div>
         <div className="flex max-w-lg flex-wrap">
           {Object.keys(blogTags).length === 0 && 'No tags found.'}

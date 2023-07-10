@@ -4,44 +4,75 @@ import Logo from '@/data/logo.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
-import MobileNav from './MobileNav'
+// import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 
+import { useState } from 'react'
 const LayoutWrapper = ({ children }) => {
+  const [navShow, setNavShow] = useState(false)
+  const onToggleNav = () => {
+    setNavShow((status) => {
+      return !status
+    })
+  }
+
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
-        <header className="flex items-center justify-between">
-          <div>
+        <header>
+          <div className="flex items-center justify-between pb-4 pt-8 sm:pb-8">
             <Link href="/" aria-label={siteMetadata.headerTitle}>
-              <div className="flex items-center justify-between">
-                <div className="mr-3">
-                  <Logo width={60} />
-                </div>
-                {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="hidden h-6 text-2xl font-semibold sm:block">
-                    {siteMetadata.headerTitle}
-                  </div>
-                ) : (
-                  siteMetadata.headerTitle
-                )}
-              </div>
+              <h2 className="text-2xl font-extrabold">{siteMetadata.headerTitle}</h2>
             </Link>
-          </div>
-          <div className="flex items-center text-base leading-5">
-            <div className="hidden sm:block">
+            <nav className="flex hidden items-center text-base leading-5 sm:block">
               {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
-                >
+                <Link key={link.title} href={link.href} className="p-1 font-medium sm:ml-4">
                   {link.title}
                 </Link>
               ))}
+            </nav>
+            <div className="hidden sm:block">
+              <ThemeSwitch />
             </div>
-            <ThemeSwitch />
-            <MobileNav />
+            <button
+              type="button"
+              className="ml-1 mr-1 h-8 w-8 rounded sm:hidden"
+              aria-label="Toggle Menu"
+              onClick={onToggleNav}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="text-gray-900 dark:text-gray-300"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className={`${navShow ? '' : 'hidden'}`}>
+            <nav className="flex-col items-center justify-between">
+              <hr />
+              {headerNavLinks.map((link) => (
+                <div key={link.title} className="px-2 py-2">
+                  <Link
+                    href={link.href}
+                    // className="text-1xl"
+                    onClick={onToggleNav}
+                  >
+                    {link.title}
+                  </Link>
+                </div>
+              ))}
+              <div className="px-2 py-2">
+                <ThemeSwitch />
+              </div>
+            </nav>
+            <hr />
           </div>
         </header>
         <main className="mb-auto">{children}</main>
