@@ -24,11 +24,10 @@ export default function Publications({ initialDisplayPublications, publications,
         description={siteMetadata.description}
       />
       <ListLayout
-        postType="publications"
         posts={publications}
         initialDisplayPosts={initialDisplayPublications}
         pagination={pagination}
-        title="All Publications"
+        title="Publications"
       />
     </>
   )

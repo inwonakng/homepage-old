@@ -4,6 +4,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllTags } from '@/lib/tags'
 import kebabCase from '@/lib/utils/kebabCase'
+import { useState } from 'react'
 
 export async function getStaticProps() {
   const blogTags = await getAllTags('blog')
@@ -16,49 +17,68 @@ export default function Tags({ blogTags, publicationTags }) {
   const sortedPublicationTags = Object.keys(publicationTags).sort(
     (a, b) => publicationTags[b] - publicationTags[a]
   )
+  const [showBlogTag, setShowBlogTag] = useState(true)
+  const onToggleBlogTag = () => {
+    setShowBlogTag((status) => !status)
+  }
+  const [showPubTag, setShowPubTag] = useState(true)
+  const onTogglePubTag = () => {
+    setShowPubTag((status) => !status)
+  }
   return (
     <>
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I publish/blog about" />
-      <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
-        <div className="space-x-2 pb-8 pt-6 md:space-y-5">
-          <h2 className="text-2xl font-extrabold">Publication Tags</h2>
-        </div>
-        <div className="flex max-w-lg flex-wrap">
-          {Object.keys(publicationTags).length === 0 && 'No tags found.'}
-          {sortedPublicationTags.map((t) => {
-            return (
-              <div key={t} className="mb-2 mr-5 mt-2">
-                <Tag postType="publications" text={t} />
-                <Link
-                  href={`/tags/publications/${kebabCase(t)}`}
-                  className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
-                >
-                  {` (${publicationTags[t]})`}
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-      <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0">
-        <div className="space-x-2 pb-8 pt-6 md:space-y-5">
+      <div className="pb-4">
+        <div className="hidden space-x-2 pb-8 sm:block md:space-y-5">
           <h2 className="text-2xl font-extrabold">Blog Tags</h2>
         </div>
-        <div className="flex max-w-lg flex-wrap">
-          {Object.keys(blogTags).length === 0 && 'No tags found.'}
-          {sortedBlogTags.map((t) => {
-            return (
-              <div key={t} className="mb-2 mr-5 mt-2">
-                <Tag postType="blog" text={t} />
-                <Link
-                  href={`/tags/blog/${kebabCase(t)}`}
-                  className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
-                >
-                  {` (${blogTags[t]})`}
-                </Link>
-              </div>
-            )
-          })}
+        <button className="block space-x-2 pb-4 sm:hidden md:space-y-5" onClick={onToggleBlogTag}>
+          <h2 className="text-2xl font-extrabold">Blog Tags</h2>
+        </button>
+        <div className={`sm:block ${showBlogTag ? 'block' : 'hidden'}`}>
+          <div className="flex flex-wrap">
+            {Object.keys(blogTags).length === 0 && 'No tags found.'}
+            {sortedBlogTags.map((t) => {
+              return (
+                <div key={t} className="mb-2 mr-5 mt-2">
+                  <Tag postType="blog" text={t} />
+                  <Link
+                    href={`/tags/blog/${kebabCase(t)}`}
+                    className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
+                  >
+                    {` (${blogTags[t]})`}
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className="pt-4">
+        <div className="hidden space-x-2 pb-8 sm:block md:space-y-5">
+          <h2 className="text-2xl font-extrabold">Publication Tags</h2>
+        </div>
+        <button className="block space-x-2 pb-4 sm:hidden md:space-y-5" onClick={onTogglePubTag}>
+          <h2 className="text-2xl font-extrabold">Publication Tags</h2>
+        </button>
+        <div className={`sm:block ${showPubTag ? 'block' : 'hidden'}`}>
+          <div className="flex flex-wrap">
+            {Object.keys(publicationTags).length === 0 && 'No tags found.'}
+            {sortedPublicationTags.map((t) => {
+              return (
+                <div key={t} className="mb-2 mr-5 mt-2">
+                  <Tag postType="publications" text={t} />
+                  <Link
+                    href={`/tags/publications/${kebabCase(t)}`}
+                    className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
+                  >
+                    {` (${publicationTags[t]})`}
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </>

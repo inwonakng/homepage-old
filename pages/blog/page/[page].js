@@ -46,7 +46,6 @@ export default function PostPage({ posts, initialDisplayPosts, pagination }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <ListLayout
-        postType="blog"
         posts={posts}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}

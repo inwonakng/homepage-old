@@ -1,10 +1,10 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
+import { useRouter } from 'next/router'
 import Logo from '@/data/logo.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
-// import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 
 import { useState } from 'react'
@@ -15,6 +15,7 @@ const LayoutWrapper = ({ children }) => {
       return !status
     })
   }
+  const router = useRouter()
 
   return (
     <SectionContainer>
@@ -24,15 +25,23 @@ const LayoutWrapper = ({ children }) => {
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <h1 className="text-2xl font-extrabold">{siteMetadata.headerTitle}</h1>
             </Link>
-            <nav className="flex hidden items-center text-base sm:block">
-              {headerNavLinks.map((link) => (
-                <Link key={link.title} href={link.href} className="p-1 font-medium sm:ml-4">
-                  {link.title}
-                </Link>
-              ))}
-            </nav>
             <div className="hidden sm:block">
-              <ThemeSwitch />
+              <div className="flex items-center justify-between">
+                <nav className="flex items-center text-base">
+                  {headerNavLinks.map((link) => (
+                    <Link
+                      key={link.title}
+                      href={link.href}
+                      className={`p-1 font-medium underline-offset-2 hover:underline sm:ml-4 ${
+                        router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                      }`}
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </nav>
+                <ThemeSwitch />
+              </div>
             </div>
             <button
               type="button"
@@ -54,7 +63,13 @@ const LayoutWrapper = ({ children }) => {
               <hr />
               {headerNavLinks.map((link) => (
                 <div key={link.title} className="px-2 py-2">
-                  <Link href={link.href} onClick={onToggleNav}>
+                  <Link
+                    href={link.href}
+                    onClick={onToggleNav}
+                    className={`underline-offset-2 hover:underline ${
+                      router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                    }`}
+                  >
                     {link.title}
                   </Link>
                 </div>

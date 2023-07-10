@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination'
 import formatDate from '@/lib/utils/formatDate'
 
 export default function ListLayout({
-  postType,
+  // postType,
   posts,
   title,
   initialDisplayPosts = [],
@@ -24,8 +24,8 @@ export default function ListLayout({
   return (
     <>
       <div className="divide-y divide-gray-300 dark:divide-gray-500">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h2 className="text-2xl font-extrabold leading-9 tracking-tight">{title}</h2>
+        <div className="pb-4">
+          <h2 className="pb-4 text-2xl font-extrabold leading-9 tracking-tight">{title}</h2>
           <div className="relative max-w-lg">
             <input
               aria-label="Search articles"
@@ -53,7 +53,7 @@ export default function ListLayout({
         <ul>
           {!filteredPosts.length && 'No posts found.'}
           {displayPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, postType } = frontMatter
             return (
               <li key={slug} className="py-4">
                 <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
@@ -66,7 +66,12 @@ export default function ListLayout({
                   <div className="space-y-3 xl:col-span-3">
                     <div>
                       <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                        <Link href={`/${postType}/${slug}`}>{title}</Link>
+                        <Link
+                          href={`/${postType}/${slug}`}
+                          className="underline-offset-2 hover:underline"
+                        >
+                          {title}
+                        </Link>
                       </h3>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
