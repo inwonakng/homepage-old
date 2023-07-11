@@ -23,10 +23,10 @@ export default function ListLayout({
 
   return (
     <>
-      <div className="divide-y divide-gray-300 dark:divide-gray-500">
-        <div className="pb-4">
-          <h2 className="pb-4 text-2xl font-extrabold">{title}</h2>
-          <div className="relative max-w-lg">
+      <div className="divide-y-4 divide-slate-300 dark:divide-gray-500">
+        <div className="pb-8">
+          <h2 className="pb-8 text-2xl font-extrabold">{title}</h2>
+          <div className="max-w relative">
             <input
               aria-label="Search articles"
               type="text"
@@ -50,22 +50,16 @@ export default function ListLayout({
             </svg>
           </div>
         </div>
-        <ul>
+        <ul className="pt-4">
           {!filteredPosts.length && 'No posts found.'}
           {displayPosts.map((frontMatter) => {
             const { slug, date, title, summary, tags, postType } = frontMatter
             return (
               <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
+                <article className="space-y-2">
+                  <div className="space-y-3">
                     <div>
-                      <h3 className="text-2xl font-bold">
+                      <h3 className="text-xl font-bold">
                         <Link
                           href={`/${postType}/${slug}`}
                           className="underline-offset-2 hover:underline"
@@ -73,6 +67,12 @@ export default function ListLayout({
                           {title}
                         </Link>
                       </h3>
+                      <dl>
+                        <dt className="sr-only">Published on</dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <time dateTime={date}>{formatDate(date)}</time>
+                        </dd>
+                      </dl>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
                           <Tag key={tag} postType={postType} text={tag} />

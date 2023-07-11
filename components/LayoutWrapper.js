@@ -23,7 +23,7 @@ const LayoutWrapper = ({ children }) => {
         <header>
           <div className="flex items-center justify-between pb-8 pt-8">
             <Link href="/" aria-label={siteMetadata.headerTitle}>
-              <h1 className="text-2xl font-extrabold">{siteMetadata.headerTitle}</h1>
+              <h1 className="text-2xl">{siteMetadata.headerTitle}</h1>
             </Link>
             <div className="hidden sm:block">
               <div className="flex items-center justify-between">

@@ -32,14 +32,14 @@ export default function Recent({ initialDisplayPosts, posts, pagination }) {
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/publications"
-            className="pl-4 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            className="pl-8 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
             All Publications &rarr;
           </Link>
           <Link
             href="/blog"
-            className="pl-4 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            className="pl-8 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
           >
             All Blog Posts &rarr;

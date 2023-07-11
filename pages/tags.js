@@ -29,7 +29,7 @@ export default function Tags({ blogTags, publicationTags }) {
     <>
       <PageSEO title={`Tags - ${siteMetadata.author}`} description="Things I publish/blog about" />
       <div className="pb-4">
-        <div className="hidden space-x-2 pb-8 sm:block md:space-y-5">
+        <div className="hidden space-x-2 pb-4 sm:block md:space-y-5">
           <h2 className="text-2xl font-extrabold">Blog Tags</h2>
         </div>
         <button className="block space-x-2 pb-4 sm:hidden md:space-y-5" onClick={onToggleBlogTag}>
@@ -55,8 +55,8 @@ export default function Tags({ blogTags, publicationTags }) {
         </div>
       </div>
       <hr />
-      <div className="pt-4">
-        <div className="hidden space-x-2 pb-8 sm:block md:space-y-5">
+      <div className="pt-6">
+        <div className="hidden space-x-2 pb-4 sm:block md:space-y-5">
           <h2 className="text-2xl font-extrabold">Publication Tags</h2>
         </div>
         <button className="block space-x-2 pb-4 sm:hidden md:space-y-5" onClick={onTogglePubTag}>

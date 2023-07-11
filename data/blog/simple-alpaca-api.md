@@ -8,7 +8,7 @@ summary: Building a simple API using FastAPI to interact with Stanford NLP's Alp
 
 In this post, we will go over how to build a simple REST API that allows users to interact with Stanford's Alpaca model.
 
-**disclaimer**: This is a simple modification of the gradio example provided by tloen on huggingface. All credits go to tloen and the researchers at Stanford for training and providing the Alpaca weights. I only wrote the code for the API server
+**disclaimer**: This is a simple modification of the gradio example provided by tloen on huggingface. All credits go to tloen and the researchers at Stanford for training and providing the Alpaca weights. I only wrote the code for the API server.
 
 # Credits
 

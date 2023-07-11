@@ -7,12 +7,12 @@ summary: Some tips I learned over the years on using a remote computing resource
 images: []
 ---
 
-## SSH
+# SSH
 
 If you are using a remote computing resource, it's most likely that you are accessing it through ssh.
 Below are some tips I found useful for using SSH.
 
-### Using SSH keys
+## Using SSH keys
 
 SSH keys can be used to access remote machines or repositories without typing in the password every time (In fact, github has phased out passwords at this point).
 Github has a [good tutorial on this](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) as well.
@@ -29,22 +29,22 @@ If you need to check your public key later, you can use the `cat` command to dis
 Now that you have the key, you can also register it in your remote servers to access it without typing in the password every time.
 You can do this with the `ssh-copy-id` command. Simply run `ssh-copy-id {USERNAME}@{HOSTNAME}` after replacing the username and hostname values, and your ssh key will be registered to that machine. No more password typing!
 
-### Port fowarding on remote machines
+## Port fowarding on remote machines
 
 Port forwarding is very useful if you are using your remote machine to run a heavy process and would like to access it from your local machine.
 For example, you could be running a tensorboard instance from the remote machine and would like to view it on your local machine's browser.
 The simplest way of forwarding port with ssh is by using the `-L` argument in your ssh command.
 
 ```bash
-ssh -L {LOCAL_PORT_YOU_WANT}:{ACTUAL_REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD} {SOME_UNIQUE_NAME}
+ssh -L {LOCAL_PORT_YOU_WANT}:{REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD} {REMOTE_NAME}
 ```
 
 Or, if you are always using the same port and don't want to bother typing out the whole thing every time, you can modify your local machine's ssh setting to always forward a particular port by modifying the `~/.ssh/config` file.
 
 ```ssh-config:~/.ssh/config
-Host {SOME_UNIQUE_NAME}
-    HostName {ACTUAL_REMOTE_ADDRESS}
-    LocalForward 127.0.0.1:{LOCAL_PORT_YOU_WANT} {ACTUAL_REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD}
+Host {REMOTE_NAME}
+    HostName {REMOTE_ADDRESS}
+    LocalForward 127.0.0.1:{LOCAL_PORT_YOU_WANT} {REMOTE_ADDRESS}:{REMOTE_PORT_TO_FORWARD}
     User {YOUR_USERNAME}
 ```
 
@@ -73,7 +73,7 @@ You just need to press `ctrl+shift+p` for the menu and type in `port`, and selec
 Then you can specify which local and remote ports you'd like to forward in a GUI setting.
 Keep in mind that this does not last if you close your remote session.
 
-### Managing Sessions
+## Managing Sessions
 
 Tmux will make your life much easier when it comes to managing sessions and keeping code running even if you disconnect.
 It's usually installed on most ubuntu machines.
@@ -82,8 +82,8 @@ Make sure to activate the environment it is installed in before you are accessin
 Refer to [this post](https://inwon.net/blog/iterm2-tmux-remote-integration) for more detailed usage on tmux/iterm.
 If you are on a debian-based system, I also found [guake terminal](http://guake-project.org) quite useful.
 
-## Quality-of-Life tools
+# Quality-of-Life tools
 
-### [Lazygit](https://github.com/jesseduffield/lazygit) / [Lazydocker](https://github.com/jesseduffield/lazydocker)
+## [Lazygit](https://github.com/jesseduffield/lazygit) / [Lazydocker](https://github.com/jesseduffield/lazydocker)
 
 These two tools by the same author are basically pseudo-gui's for the terminal. On machines that you many not have access to nice gui softwares such as github descktop (you shouldn't be using this anyway) or docker desktop, these two tools can offer a similar functionality to their desktop counterparts. The installation process is pretty simple, just make sure you install it under your own user's directory if you are on a shared machine.
