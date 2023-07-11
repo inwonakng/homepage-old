@@ -35,7 +35,7 @@ export default function ListLayout({
               className="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-300"
             />
             <svg
-              className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-300"
+              className="absolute right-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-600"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -58,26 +58,41 @@ export default function ListLayout({
               <li key={slug} className="py-4">
                 <article className="space-y-2">
                   <div className="space-y-3">
-                    <div>
-                      <h3 className="text-xl font-bold">
-                        <Link
-                          href={`/${postType}/${slug}`}
-                          className="underline-offset-2 hover:underline"
-                        >
-                          {title}
-                        </Link>
-                      </h3>
-                      <dl>
+                    <h3 className="text-xl font-bold">
+                      <Link
+                        href={`/${postType}/${slug}`}
+                        className="underline-offset-2 hover:underline"
+                      >
+                        {title}
+                      </Link>
+                    </h3>
+                    <div className="flex items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="h-6 w-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+
+                      <dl className="pl-4">
                         <dt className="sr-only">Published on</dt>
                         <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                           <time dateTime={date}>{formatDate(date)}</time>
                         </dd>
                       </dl>
-                      <div className="flex flex-wrap">
-                        {tags.map((tag) => (
-                          <Tag key={tag} postType={postType} text={tag} />
-                        ))}
-                      </div>
+                    </div>
+                    <div className="flex flex-wrap">
+                      {tags.map((tag) => (
+                        <Tag key={tag} postType={postType} text={tag} />
+                      ))}
                     </div>
                     <div className="prose max-w-none text-gray-500 dark:text-gray-400">
                       {summary}
