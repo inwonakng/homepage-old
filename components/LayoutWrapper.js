@@ -22,22 +22,25 @@ const LayoutWrapper = ({ children }) => {
       <div className="flex h-screen flex-col justify-between">
         <header>
           <div className="flex items-center justify-between pb-8 pt-8">
-            <Link href="/" aria-label={siteMetadata.headerTitle}>
-              <h1 className="text-2xl">{siteMetadata.headerTitle}</h1>
-            </Link>
+            <h1>
+              <Link href="/" aria-label={siteMetadata.headerTitle}>
+                {siteMetadata.headerTitle}
+              </Link>
+            </h1>
             <div className="hidden sm:block">
               <div className="flex items-center justify-between">
                 <nav className="flex items-center text-base">
                   {headerNavLinks.map((link) => (
-                    <Link
-                      key={link.title}
-                      href={link.href}
-                      className={`p-1 font-medium underline-offset-2 hover:underline sm:ml-4 ${
-                        router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                      }`}
-                    >
-                      {link.title}
-                    </Link>
+                    <h4 key={link.title}>
+                      <Link
+                        href={link.href}
+                        className={`p-1 underline-offset-2 hover:underline sm:ml-4 ${
+                          router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                        }`}
+                      >
+                        {link.title}
+                      </Link>
+                    </h4>
                   ))}
                 </nav>
                 <ThemeSwitch />
@@ -58,20 +61,21 @@ const LayoutWrapper = ({ children }) => {
               </svg>
             </button>
           </div>
-          <div className={`${navShow ? '' : 'hidden'}`}>
+          <div className={`block sm:hidden ${navShow ? '' : 'hidden'}`}>
             <nav className="flex-col items-center justify-between">
               <hr />
               {headerNavLinks.map((link) => (
                 <div key={link.title} className="px-2 py-2">
-                  <Link
-                    href={link.href}
-                    onClick={onToggleNav}
-                    className={`underline-offset-2 hover:underline ${
-                      router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
-                    }`}
-                  >
-                    {link.title}
-                  </Link>
+                  <h4 href={link.href}>
+                    <Link
+                      onClick={onToggleNav}
+                      className={`underline-offset-2 hover:underline ${
+                        router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
+                      }`}
+                    >
+                      {link.title}
+                    </Link>
+                  </h4>
                 </div>
               ))}
               <div className="px-2 py-2">

@@ -25,7 +25,7 @@ export default function ListLayout({
     <>
       <div className="divide-y-4 divide-slate-300 dark:divide-gray-500">
         <div className="pb-8">
-          <h2 className="pb-8 text-2xl font-extrabold">{title}</h2>
+          <h2 className="pb-8 font-extrabold">{title}</h2>
           <div className="max-w relative">
             <input
               aria-label="Search articles"
@@ -58,13 +58,8 @@ export default function ListLayout({
               <li key={slug} className="py-4">
                 <article className="space-y-2">
                   <div className="space-y-3">
-                    <h3 className="text-xl font-bold">
-                      <Link
-                        href={`/${postType}/${slug}`}
-                        className="underline-offset-2 hover:underline"
-                      >
-                        {title}
-                      </Link>
+                    <h3 className=" font-bold">
+                      <Link href={`/${postType}/${slug}`}>{title}</Link>
                     </h3>
                     <div className="flex items-center">
                       <svg

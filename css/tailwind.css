@@ -1,22 +1,57 @@
 @tailwind base;
+@layer base {
+  body {
+    @apply bg-sky-100;
+    @apply text-sky-950;
+    @apply antialiased;
+    @apply dark:bg-slate-800;
+    @apply dark:text-gray-300;
+  }
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+    /* > a{ */
+    /*   @apply  */
+    /* } */
+  }
+  a {
+    @apply text-primary-500;
+    @apply hover:text-primary-600;
+    @apply dark:text-primary-500;
+    @apply dark:hover:text-primary-400;
+  }
+
+  :is(h1, h2, h3, h4, h5) > a {
+    @apply text-sky-950;
+    @apply hover:text-secondary-700;
+    @apply dark:text-gray-300;
+    @apply dark:hover:text-secondary-400;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;
 
-.task-list-item::before {
-  @apply hidden;
-}
+/* .task-list-item::before { */
+/*   @apply hidden; */
+/* } */
 
-.task-list-item {
-  @apply list-none;
-}
+/* .task-list-item { */
+/*   @apply list-none; */
+/* } */
 
-.footnotes {
-  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
-}
+/* .footnotes { */
+/*   @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700; */
+/* } */
 
-.csl-entry {
-  @apply my-5;
-}
+/* .csl-entry { */
+/*   @apply my-5; */
+/* } */
 
 /* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
 input:-webkit-autofill,

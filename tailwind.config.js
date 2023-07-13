@@ -34,10 +34,11 @@ module.exports = {
         ],
       },
       colors: {
-        primary: colors.teal,
+        primary: colors.cyan,
+        secondary: colors.indigo,
         gray: colors.neutral,
       },
-      typography: (theme) => ({
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             color: theme('colors.sky.950'),
