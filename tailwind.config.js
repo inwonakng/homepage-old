@@ -52,22 +52,26 @@ module.exports = {
             h1: {
               fontWeight: '700',
               fontSize: '1.50em',
-              // letterSpacing: theme('letterSpacing.tight'),
+              letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.sky.950'),
             },
             h2: {
               fontWeight: '700',
               fontSize: '1.25em',
-              // letterSpacing: theme('letterSpacing.tight'),
+              letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.sky.950'),
             },
             h3: {
               fontWeight: '600',
               fontSize: '1.125em',
+              letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.sky.950'),
             },
             'h4,h5,h6': {
               color: theme('colors.sky.950'),
+            },
+            p: {
+              letterSpacing: theme('letterSpacing.tight'),
             },
             pre: {
               backgroundColor: theme('colors.gray.800'),
@@ -108,11 +112,6 @@ module.exports = {
               color: theme('colors.gray.900'),
               borderLeftColor: theme('colors.gray.200'),
             },
-            prose: {
-              h1: {
-                fontSize: '8px',
-              },
-            },
           },
         },
         dark: {
@@ -126,13 +125,9 @@ module.exports = {
               code: { color: theme('colors.primary.400') },
             },
             h1: {
-              fontWeight: '700',
-              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.gray.300'),
             },
             h2: {
-              fontWeight: '700',
-              // letterSpacing: theme('letterSpacing.tight'),
               color: theme('colors.gray.300'),
             },
             h3: {

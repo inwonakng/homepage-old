@@ -9,14 +9,11 @@ images: []
 
 [Github Link](https://github.com/inwonakng/robust-fl)
 
-This was a class project for Security and Privacy in Machine Learning in Spring 2023, taught by professor Lei Yu.
+This was a class project for Security and Privacy in Machine Learning in Spring 2023, taught by professor Lei Yu, done in a group wtih Daniel Della Vecchia.
 
-I worked with Daniel Della Vecchia on it.
+This was a fun project, and my first dive into federated learning.
 
-This was a cool project, and my first dive into federated learning.
-
-We focused on an aspect of federated learning known as
-'straggling'.
+We focused on an aspect of federated learning known as 'straggling'.
 
 This is when the client devices do not send their updates on time -- possibly adversarial, but also might be benign with the delays caused by hardware/network issues.
 
