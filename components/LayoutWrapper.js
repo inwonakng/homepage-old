@@ -66,8 +66,9 @@ const LayoutWrapper = ({ children }) => {
               <hr />
               {headerNavLinks.map((link) => (
                 <div key={link.title} className="px-2 py-2">
-                  <h4 href={link.href}>
+                  <h4 key={link.title}>
                     <Link
+                      href={link.href}
                       onClick={onToggleNav}
                       className={`underline-offset-2 hover:underline ${
                         router.pathname.startsWith(link.href) ? 'underline decoration-dotted' : ''
