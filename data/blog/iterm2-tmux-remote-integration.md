@@ -79,3 +79,13 @@ ssh {user}@{hostname} -t 'tmux -CC attach -t {session_name}'
 ```
 
 The `-t` flag for ssh tells it to execute the following command. By doing this, you are doing Step 1 and 2 at once.
+
+If you would like to create a new session and attach right away, you can replace the tmux command with the following:
+
+```bash
+tmux -CC new -s {session_name}
+```
+
+Instead of `attach -t {session_name}` which attaches to an existing session, you are telling tmux to create a new session with the name.
+
+And by using `-CC`, you are telling it to use client mode, which allows iterm to natively connect.

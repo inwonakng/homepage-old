@@ -1,10 +1,10 @@
 ---
-title: Quick tips for using remote computing resources
+title: Tips for using remote computing resources
 date: '2023-7-08'
 tags: ['ssh', 'remote-computing']
 draft: false
 summary: Some tips I learned over the years on using a remote computing resources effectively.
-images: []
+images: [/static/images/remote-computing-tips/vscode-remote-ssh.png]
 ---
 
 # SSH
@@ -87,3 +87,13 @@ If you are on a debian-based system, I also found [guake terminal](http://guake-
 ## [Lazygit](https://github.com/jesseduffield/lazygit) / [Lazydocker](https://github.com/jesseduffield/lazydocker)
 
 These two tools by the same author are basically pseudo-gui's for the terminal. On machines that you many not have access to nice gui softwares such as github descktop (you shouldn't be using this anyway) or docker desktop, these two tools can offer a similar functionality to their desktop counterparts. The installation process is pretty simple, just make sure you install it under your own user's directory if you are on a shared machine.
+
+- [Lazygit](https://github.com/jesseduffield/lazygit)
+- [Lazydocker](https://github.com/jesseduffield/lazydocker)
+
+## VSCode Remote
+
+VSCode provides a nice way of using remote machines using the `Remote - SSH` extension.
+You can install this extension by searching for `remote` on the extensions sidebar.
+
+![](/static/images/remote-computing-tips/vscode-remote-ssh.png)
