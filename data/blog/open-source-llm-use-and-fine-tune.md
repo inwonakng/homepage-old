@@ -321,5 +321,5 @@ python server.py \
 - [TheBloke huggingface profile](https://huggingface.co/TheBloke)
 - [OobaBooga WebUI repo](https://github.com/oobabooga/text-generation-webui)
 - [Talk Video Link](https://tw.rpi.edu/media/foci-llm-users-group-guide-open-source-large-language-models-and-fine-tuning-techniques-18)
-- [Slides](https://github.com/inwonakng/homepage/raw/master/public/static/pdf/10-18-LLM-User-Group.pdf)
+- [Slides](/static/pdf/10-18-LLM-User-Group.pdf)
 - [Code Examples Repo](https://github.com/inwonakng/llm-usergroup-examples)

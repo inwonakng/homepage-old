@@ -21,4 +21,4 @@ My PhD focus is on blockchain systems and integration of machine learning with b
 
 [Google Scholar](https://scholar.google.com/citations?user=ef-tRpMAAAAJ&hl=en&inst=5831747260623323207)
 
-[CV](https://github.com/inwonakng/homepage/raw/master/public/static/pdf/resume.pdf)
+[CV](/static/pdf/resume.pdf)
