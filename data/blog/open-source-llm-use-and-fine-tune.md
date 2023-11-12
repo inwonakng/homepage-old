@@ -13,6 +13,12 @@ images:
   ]
 ---
 
+**Update (Nov 11 2023)**
+
+I noticed that the default API behaviors have changed as of Nov 11 2023.
+OpenAI API will try to use the same port as the raw API, so it is advised to use only one.
+In addition, I also found that oobabooga's OpenAI API also supports more options such as specifying templates, so it seems that the project will support the OpenAI API approach more.
+
 ## Table of contents:
 
 - [How to get the weights](#how-to-get-the-weights)
@@ -77,15 +83,16 @@ The WebUI offers two types of API styles.
 The first one is their raw API, which has a more complicated structure but allows more paramters to be tweaked.
 The other is the OpenAI style API, which follows the _known_ OpenAPI standards, which means that the client code can be easily switched out to OpenAI models.
 
-### Raw API
+### Raw API (likely deprecated)
 
 The raw API is listening on port 5000 by default.
 The `history` parameter can be a bit confusing.
 There are two parts of the history parameter: `internal` and `visible`.
 The `internal` history is the history that the model sees, while the `visible` history is the history that the user sees.
+
 I have found that using the same history for both worked fine for my purposes.
 Each history list is a list of tuples, where each tuple is a `[user_input, model_output]` pair.
-Your final input is send through the `user_input` paramter, and the system message can be set by `context_instruct`.
+Your final input is sent through the `user_input` paramter, and the system message can be set by `context_instruct`.
 
 ```python
 import requests
@@ -121,29 +128,38 @@ One thing to note is to set dummy values for `OPENAI_API_KEY` and `OPENAI_API_BA
 More info on OpenAI API can be found [here](https://platform.openai.com/docs/introduction).
 
 ```python
-import os
-os.environ['OPENAI_API_KEY']="sk-111111111111111111111111111111111111111111111111"
-os.environ['OPENAI_API_BASE']="http://0.0.0.0:5001/v1"
-import openai
+conf = {
+    # Name of the model, not useful for oobabooga
+    'model': MODEL_NAME,
+    # OpenAI key
+    # or the default "sk-111111111111111111111111111111111111111111111111" for oobabooga
+    'api_key': API_KEY
 
-prompt = [
-    {
-        'role': 'user',
-        'content': 'You are a helpful assistant. You will answer questions I ask you. Reply with Yes if you understand.'
-    },{
-        'role': 'assistant',
-        'content': 'Yes, I understand'
-    },{
-        'role': 'user',
-        'content': 'What color is the sky?'
-    }
-]
-response = openai.ChatCompletion.create(
-    model="x",
-    messages = prompt
+}
+headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Authorization": f"Bearer {conf['api_key']}"
+}
+
+data = {
+    "messages": messages
+}
+
+if model in ['gpt-4', 'gpt-3.5-turbo']:
+    data['model'] = model
+else:
+    data.update(CODELLAMA_ARGS)
+
+response = requests.post(
+    url = conf['url'],
+    headers=headers,
+    json=data,
+    verify=False
 )
-output = response['choices'][0]['message']['content']
-print('Model output:', output)
+if response.status_code == 200:
+    model_output = response.json()['choices'][0]['message']['content']
+else:
+    raise Exception(f"Response returned with code {response.status_code}, message: {response.content.decode()}")
 ```
 
 ## Training & Saving LoRA
