@@ -9,7 +9,9 @@ summary: Inwon Kang, Qishen Han, Lirong Xia (Extended Abstract, AAMAS 2023)
 Paper link TBD
 
 This is an ongoing work I have been working on with Qishen Han and professor Lirong Xia.
-In this work, we try to buid decision tree classifiers that can _perfectly_ learn a voting rule.
+We try to build decision tree classifiers that can _perfectly_ learn a voting rule.
 Using specific ranking-aware features, we were able to train decision tree models that are able represent WMG-based voting rules in a tree form.
 
-This work has been accepted as an extended abstract for AAMAS 2023.
+This work has been accepted as an extended abstract for AAMAS 2023 and was presented at EAAMO 2023.
+
+[Poster](/static/pdf/Explainable_Voting_EAAMO_Poster.pdf)
