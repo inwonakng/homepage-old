@@ -11,13 +11,7 @@ images: []
 [Live Website](https://mega-ace-crowdsource-app.vercel.app/)
 
 This was my submission to Algorand foundation's Mega Ace Hackathon.
-
-Similar to clean my web, this project is a data repository -- this time not focused on spam URLs -- that can receive submissions from anyone with an algorand wallet.
-
-I had originally been preparing to use Reach.sh to implement my smart contract, but was struggling through their documentation and wasn't able to get a full grasp of what I needed to do.
-
-Then on the day of the Hackathon, I learned about the algokit environment (beaker, algosdk), which I decided to change tracks to.
-
-Because of this, I wasn't really prepared and had to write the whole thing in 2 days, but it was worth it at the end.
-
-This project got second place in RPI's local competition. Still waiting to hear back from the global results.
+Similar to [clean my web](/blog/clean-my-web), this project is a data repository -- this time not focused on spam URLs -- that can receive submissions from anyone with an Algorand wallet.
+I was originally planning on using Reach.sh to implement my smart contract, but was struggling through their documentation and wasn't able to get a full grasp of what I needed to do.
+Then I learned about the [algokit](https://github.com/algorandfoundation/algokit-cli) environment (beaker, algosdk) on the day of the Hackathon, which I decided to change tracks to.
+This project got second place in RPI's local competition.

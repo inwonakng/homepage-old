@@ -19,9 +19,14 @@ images:
 
 ## Why use it?
 
-The reason that drove me to pick up this framework was the fact that I don't have to do any manual device management. Before learning lightning, I used to create a file called `device.py` and to a top-level import for the deviced used in the experiments. This means that every file that contains code dealing with backpropgation needed to import this file and call `.to(device)` in order to prevent cuda from complaining. This worked well enough for simple cases, but can start to get pretty annoying once you start having to manage more complex tensor operations.
+The reason I picked this framework up was the fact that I don't have to do any manual device management.
+Before learning lightning, I used to create a file called `device.py` and to a top-level import for the deviced used in the experiments.
+This means that every file that contains code dealing with backpropgation needed to import this file and call `.to(device)` in order to prevent cuda from complaining.
+This worked well enough for simple cases, but can start to get pretty annoying once you start having to manage more complex tensor operations.
 
-Other than that, it also provides a pretty clean way of managing your code. One of the problems that I face every time I start a new project is how to structure. The best practice in the vanilla setting is to write a train and evaluate function that takes in the model and dataloaders, but this can result in unorganized code that is difficult to maintain. Lightning can take care of this problem by providing a boilerplate that can be followed, leaving much less room for possibly redundant deviations.
+Other than that, it can provide a pretty clean way of managing your code.
+One of the problems that I face every time I start a new project is how to structure it.
+The best practice in the vanilla setting is to write a train and evaluate function that takes in the model and dataloaders, but this can result in unorganized code that is difficult to maintain. Lightning can take care of this problem by providing a boilerplate that can be followed, leaving much less room for possibly redundant deviations.
 
 ```python
 '''
@@ -48,7 +53,13 @@ def evaluate(model, val_loader:DataLoader):
     ...
 ```
 
-The problem of where to maintain the optimizer and criterion is another issue. I've seen people (and I have done this in the past as well) writing code to match sklearn's API, by shoving everything inside the model and writing a `.fit` and `.predict` function. But if you were to do this for multiple models, you either need to copy-paste tremendous amount of code or very carefully design a base class that can cover for all your cases. The second case is what Lightning does. Although it does not quite follow sklearn's API, the idea is similar. There is a `LightningModule` that lives a layer above your `nn.Module` which takes care of the device management, optimizer, scheduler and logging. You can follow the official docs for a [in-depth tutorial](https://lightning.ai/docs/pytorch/stable/model/train_model_basic.html), but below is the general idea.
+The problem of where to maintain the optimizer and criterion is another issue.
+I've seen people (and I have done this in the past as well) writing code to match sklearn's API, by shoving everything inside the model and writing a `.fit` and `.predict` function.
+But you either need to copy-paste tremendous amount of code or very carefully design a base class that can cover for all your cases if you start doing this for multiple of models.
+The second case is what Lightning does.
+Although it does not quite follow sklearn's API, the idea is similar.
+There is a `LightningModule` that lives a layer above your `nn.Module` which takes care of the device management, optimizer, scheduler and logging.
+You can follow the official docs for a [in-depth tutorial](https://lightning.ai/docs/pytorch/stable/model/train_model_basic.html), but below is the general idea.
 
 ```python
 import torch
@@ -68,11 +79,15 @@ class MyModel(pl.LightningModule):
     ...
 ```
 
-So it really just looks like your regular `nn.Module` subclass. That's because `pl.LightningModule` is a subclass of `nn.Module` and it inherits all the methods and attributes from it. Easy enough!
+So it really just looks like your regular `nn.Module` subclass.
+That's because `pl.LightningModule` is a subclass of `nn.Module` and it inherits all the methods and attributes from it.
+Easy enough!
 
 ## So what about logging?
 
-A nice feature of Lightning is that it comes with built-in support for Tensorboard. If you are not famiilar, Tensorbaord is a dashboard that you can use the track your models' updates in real time. A quick and simple way to use it is the following:
+A nice feature of Lightning is that it comes with built-in support for Tensorboard.
+If you are not famiilar, Tensorbaord is a dashboard that you can use the track your models' updates in real time.
+A quick and simple way to use it is the following:
 
 ```python
 from torch.utils.tensorboard import SummaryWriter
@@ -87,13 +102,18 @@ for epoch in range(1000):
     writer.add_scalar('train/loss', loss, epoch)
 ```
 
-This will create the directory specified in `SummaryWriter`'s constructor and populate it with log files with the values. And by running `tensorboard --logdir ./log`, you should be able to access the dashboard in the link the command outputs. It will look something like the following:
+This will create the directory specified in `SummaryWriter`'s constructor and populate it with log files with the values.
+You should be able to access the dashboard in the link the command outputs by running `tensorboard --logdir ./log`.
+It will look something like the following:
 
 ![tensorboard-main-page](/static/images/torch-lightning-hyperparameter-tuning/tensorboard.png)
 
 ## Basic hyperparameter tuning
 
-This is useful enough when you just want to look at your loss curve or check various metric scores. However, tensorboard can do much more. On the top bar of the dashboard, there is a tab called 'HPARAMS'. This is where you can compare the results of models with varying hyperparameters, allowing you to pick the best model.
+This is useful enough when you just want to look at your loss curve or check various metric scores.
+However, tensorboard can do much more.
+On the top bar of the dashboard, there is a tab called 'HPARAMS'.
+This is where you can compare the results of models with varying hyperparameters, allowing you to pick the best model.
 
 Here are some screenshots of the cool things you can find on that page:
 
@@ -103,7 +123,8 @@ Here are some screenshots of the cool things you can find on that page:
 
 ![](/static/images/torch-lightning-hyperparameter-tuning/coordinates.png)
 
-These plots are showing the performance of different hyperparameters with respect to the metric beind used to evaluate them (in my case, validation loss). Here is how you can achieve this in a few simple steps using the Lightning framework.
+These plots are showing the performance of different hyperparameters with respect to the metric beind used to evaluate them (in my case, validation loss).
+Here is how you can achieve this in a few simple steps using the Lightning framework.
 
 ```python
 '''
@@ -155,10 +176,10 @@ trainer.fit(
     model = model,
     ...
 )
-
 ```
 
-I omited the unrelated parts to higlight just how simple it is. All you need to do is the following:
+I omitted the unrelated parts to highlight just how simple it is.
+All you need to do is the following:
 
 1. Call `self.save_hyperparameters()` in the constructor of your Lightning module. This records the input to the constructor, so all your hyperparameters should be passed in as parameters in initialization.
 2. Initialize the hyperparameter metrics as zero and specify which fields to follow.
@@ -183,7 +204,7 @@ One thing I found confusing when I got started with Ray Tune was that there were
 While the new way is nice, I did have a very minor complaint: the names of the parameters reported on the logs become enormous. For example, if the parameter would have been displayed as `in_dim` in the older method, now it will look something like `lightning_config/_module_init_config/in_dim`. It's really not a big deal, but it does make the output kind of difficult to read.
 
 Anyways, below is a quick example of how I was able to get my LightningModule class to work with Ray Tune.
-In this example, I am using the HyperOptSearch algorithm with the Asha scheduler.
+In this example, I am using the HyperOptSearch algorithm with the ASHA scheduler.
 
 ```python
 from ray import air, tune
@@ -261,7 +282,6 @@ best_result = results.get_best_result(metric=my_target_metric, mode="max")
 print('=' * 80)
 print('Best result')
 print(best_result)
-
 ```
 
 Few things to note:
@@ -287,10 +307,10 @@ Few things to note:
 
 - If you are using `LightningTrainer`, make sure that you implement the `DataModule` class in a way suggested by the official [pytorch lightning docs](https://lightning.ai/docs/pytorch/stable/data/datamodule.html) such that the `DataModule` object is not 'materialized' until `.setup` is called. If you don't do this, the ray logs will become enormous as it records every parameter to `trainer`.
 
-I made the code simple, but this really is most of what you need to do to make Ray Tune work with your pytorch-lightning model.
+I simplified the code, but this really is most of what you need to do to make Ray Tune work with your pytorch-lightning model.
 Ray Tune stores its logs under `~/ray_results`.
-If you run a tensorboard on this directory (i.e. `tensorboard --log_dir ~/ray_results`), you can look at the same hyperparameter page we saw earlier.
-Except this time, it is done algorithmically and you do not need to do anything related to hyperparameters on the torch lightining side (i.e. no need for save_hyperparameters anymore).
+You can take a look at the same hyperparameter page we saw earlier if you run tensorboard on this directory (i.e. `tensorboard --log_dir ~/ray_results`).
+Unlike before, it is done algorithmically and you do not need to do anything related to hyperparameters on the torch lightining side (i.e. no need for save_hyperparameters anymore).
 
 To load the best model, you need to first restore the tuner by giving it the path to the experiment (it would be `~/ray_results/tune_asha` if you followed the above example) and the type of trainer.
 Then you can get the best results from it, which you can pass to the `load_from_checkpoint` function of `pl.LightningModule`.
@@ -298,7 +318,6 @@ I think there must be a nicer way to do this in a Ray-native way, but I wasn't a
 If there is a better way to do it without me digging into the result config, please leave it in the comments!
 
 ```python
-
 tune.Tuner.restore(
     '~/ray_results/{EXPERIMENT_NAME}',
     LightningTrainer,

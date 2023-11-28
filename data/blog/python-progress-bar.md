@@ -14,13 +14,9 @@ images:
 ---
 
 Progress bars are a nice way to track progress of your python script.
-
-Most times, just printing the status of your script over some intervals is enough.
-
-But if once your script involves a large number of iterations, you might find the flooding print statements a bit overwhelming.
-
+Usually, just printing the status of your script over some intervals is enough.
+But you might find the flooding print statements a bit overwhelming once your script involves a large number of iterations/needs to run concurrently.
 Luckily, there are a few packages on python that can create nice progress bars in just a few extra lines (or even characters).
-
 In this post, we will cover `tqdm` and `rich`.
 
 ## tqdm
@@ -72,7 +68,7 @@ while not is_done:
 It should also be noted that if you are iterating over a generator object, tqdm **will not** have a nice progress bar, and only show the iteration count.
 This is because the object is not unpacked yet, and tqdm doesn't know how many to expect. In that case, you also need to provide the `total` parameter even if you are placing the gerenator obejct inside `tqdm`.
 
-This is all nice, but a possible problem is if you have other terminal outputs.
+This is nice, but a possible problem is if you have other terminal outputs.
 For example, you may occasionally want to print the metrics of the model you are testing.
 If you print in the middle of a progress bar, `tqdm` will re-start at the end of the print output, which can result in some nasty looking stuff.
 
@@ -114,9 +110,7 @@ Here is what the outputs look like in the terminal and jupyter:
 ![](/static/images/python-progress-bar/rich-jupyter.png)
 
 Using rich, we can use print statements inside the tracked loop and the progress bar will not break.
-
-However, if you try to nest your `track` calls, you will face an error that says `LiveError: Only one live display may be active at once`, unlike tqdm.
-
+But if you try to nest your `track` calls, you will face an error that says `LiveError: Only one live display may be active at once`, unlike tqdm.
 This is because rich uses a differen method to render their progress bars, which does not allow multiple render sessions to display at the same time.
 
 You can handle this by using the `Progress` class.
@@ -142,10 +136,10 @@ with Progress() as progress:
 
 ![](/static/images/python-progress-bar/rich-multi.png)
 
-Using `Progress`, we can dynamically create and remove tasks from the rendering session, keeping the progress bar always at the bottom of the screen.
+With `Progress`, we can dynamically create and remove tasks from the rendering session, keeping the progress bar always at the bottom of the screen.
 Note that unlike tqdm, you always have to specify the update amount in the `.update` calls.
 
-This allows us to keep the progress bars clean, even in multiprocessing scenarios.
+This allows us to keep the progress bars clean even in multiprocessing scenarios.
 Simply pass the `progress` object as one of the parameters to the target funciton, and you can create, update and delete the task from inside of each function.
 
 You can also customize the information displayed with the progress bar by playing with the column configuration, like the following:
@@ -163,4 +157,4 @@ You can also customize the information displayed with the progress bar by playin
 
 ```
 
-Credits for this snipper: [https://www.deanmontgomery.com/2022/03/24/rich-progress-and-multiprocessing/](https://www.deanmontgomery.com/2022/03/24/rich-progress-and-multiprocessing/)
+Credits for this snippet: [https://www.deanmontgomery.com/2022/03/24/rich-progress-and-multiprocessing/](https://www.deanmontgomery.com/2022/03/24/rich-progress-and-multiprocessing/)
