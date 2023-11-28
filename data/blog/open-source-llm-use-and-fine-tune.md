@@ -31,8 +31,8 @@ In addition, I also found that oobabooga's OpenAI API also supports more options
 
 ## How to get the weights
 
-For many open-source models, [TheBloke]() is a good source for accessing various fine-tuned/quantized versions as of now(10/31/2023).
-To get your hands on the LLaMA 2 weights as released by Meta, you should sign up for official access through [this link](https://ai.meta.com/resources/models-and-libraries/llama-downloads/).
+[TheBloke]() is a good source for accessing various fine-tuned/quantized versions for many open source models (as of 10/31/2023).
+To get your hands on the original LLaMA 2 weights as released by Meta, you should sign up for official access through [this link](https://ai.meta.com/resources/models-and-libraries/llama-downloads/).
 Getting this access will also allow you to access Meta research's [huggingface repos](https://huggingface.co/meta-llama) once you link your huggingface account.
 
 ## Downloading & Loading the model
@@ -45,7 +45,7 @@ Getting this access will also allow you to access Meta research's [huggingface r
 2. Specify the model name (and/or branch) in the download section.
 3. Reload the models list, select the newest model and load it.
 
-- Usually the loader is automatically detected by the dashboard. However, you may also manually switch it to a different one.
+- The loader is usually automatically detected by the dashboard. However, you may also manually switch to a different one.
 
 ### Using the terminal
 
@@ -79,7 +79,7 @@ python server.py \
 
 ## Using the API
 
-The WebUI offers two types of API styles.
+WebUI offers two types of API styles.
 The first one is their raw API, which has a more complicated structure but allows more paramters to be tweaked.
 The other is the OpenAI style API, which follows the _known_ OpenAPI standards, which means that the client code can be easily switched out to OpenAI models.
 
